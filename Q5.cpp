@@ -1,4 +1,4 @@
-// Lexical Analyser for Float Variable
+// 5. Build a lexical analyzer for Float, Double
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -108,23 +108,30 @@ bool checkDoubleNumber(string str)
 
 int main()
 {
-    string str;
-    cin >> str;
-
-    if (checkFloatVariable(str))
+    freopen("./Testcases/Q5_input.txt", "r", stdin);
+    int testcase;
+    cin >> testcase;
+    while (testcase--)
     {
-        cout << "Float Variable" << endl;
-    }
-    else if (checkFloatNumber(str))
-    {
-        cout << "Float Number" << endl;
-    }
-    else if (checkDoubleNumber(str))
-    {
-        cout << "Double Number" << endl;
-    }
-    else
-    {
-        cout << "Invalid Input" << endl;
+        string str;
+        cin >> str;
+        cout << "Scanned : " << str << endl;
+        if (checkFloatVariable(str))
+        {
+            cout << "Float Variable" << endl;
         }
+        else if (checkFloatNumber(str))
+        {
+            cout << "Float Number" << endl;
+        }
+        else if (checkDoubleNumber(str))
+        {
+            cout << "Double Number" << endl;
+        }
+        else
+        {
+            cout << "Invalid Input" << endl;
+        }
+        cout << "\n\n";
+    }
 }

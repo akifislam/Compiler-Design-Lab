@@ -1,5 +1,6 @@
 // 7. Write a program to recognize C++
 // 1. Keyword 2. Identifier 3. Operator 4. Constant
+
 #include <bits/stdc++.h>
 using namespace std;
 char singleQuote = '\'';
@@ -44,9 +45,9 @@ vector<string> all_operators = {
     "||",
     "&&",
     "&",
-};
+    "="};
 
-void fire_up()
+void sort_keywords_operators()
 {
     sort(keywords.begin(), keywords.end());
     sort(all_operators.begin(), all_operators.end());
@@ -58,34 +59,31 @@ bool isConstant(string input)
 
     // Check if it is a number
     if (input[0] == doubleQuote && input[input.size() - 1] == doubleQuote)
-    {
-        // cout << "Double Quotation Found !" << endl;
         return true;
-    }
+
     else if (input[0] == singleQuote && input[input.size() - 1] == singleQuote && input.size() == 3)
-    {
-        // cout << "Single Quotation Found !" << endl;
         return true;
-    }
 
     else if (isdigit(input[0]))
     {
         isConstant = true;
         int pointCount = 0;
+
         // Check if rest of the characters are number (and 1 point)
         for (int i = 1; i < input.size(); i++)
         {
             if (input[i] == '.')
             {
                 pointCount++;
+                continue;
             }
-            else if (!isdigit(input[i]))
+            if (!isdigit(input[i]))
             {
                 isConstant = false;
                 break;
             }
         }
-        if (pointCount == 1 && isConstant)
+        if (pointCount <= 1 && isConstant)
             return true;
         else
             return false;
@@ -131,29 +129,60 @@ bool isIdentifier(string input)
         return false;
 }
 
+vector<string> seperateWords(string str)
+{
+    vector<string> words;
+    string word = "";
+
+    for (auto letter : str)
+    {
+        if (letter == ' ')
+        {
+            words.push_back(word);
+            word = "";
+        }
+        else
+
+            word += letter;
+    }
+    words.push_back(word);
+    return words;
+}
+
 int main()
 {
-    fire_up();
+    freopen("./Testcases/Q7_input.txt", "r", stdin);
+    sort_keywords_operators();
+
     string input;
-    cin >> input;
-    if (isConstant(input))
+    getline(cin, input);
+
+    // Seperate Words from a Long String and Save them to 'lexemes' vector
+    vector<string> lexemes = seperateWords(input);
+
+    for (int i = 0; i < lexemes.size(); i++)
     {
-        cout << "Constant" << endl;
-    }
-    else if (isKeyword(input))
-    {
-        cout << "Keyword" << endl;
-    }
-    else if (isOperator(input))
-    {
-        cout << "Operator" << endl;
-    }
-    else if (isIdentifier(input))
-    {
-        cout << "Identifier" << endl;
-    }
-    else
-    {
-        cout << "Invalid Input" << endl;
+        cout << "Scanned : " << lexemes[i] << endl;
+
+        if (isConstant(lexemes[i]))
+        {
+            cout << "Constant" << endl;
+        }
+        else if (isKeyword(lexemes[i]))
+        {
+            cout << "Keyword" << endl;
+        }
+        else if (isOperator(lexemes[i]))
+        {
+            cout << "Operator" << endl;
+        }
+        else if (isIdentifier(lexemes[i]))
+        {
+            cout << "Identifier" << endl;
+        }
+        else
+        {
+            cout << "Invalid Input" << endl;
+        }
     }
 }

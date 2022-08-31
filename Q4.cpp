@@ -1,3 +1,4 @@
+// 4. Build a lexical analyzer for Integer, ShortInt, LongInt 
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -38,10 +39,10 @@ bool checkShortInt(string str)
         return false;
 
     bool isValidShortInt = true;
-    
-        // First Character '0' , then false
-        if (str[0] == '0')
-            isValidShortInt = false;
+
+    // First Character '0' , then false
+    if (str[0] == '0')
+        isValidShortInt = false;
     for (int i = 1; i < str.size(); i++)
     {
         if (!isdigit(str[i]))
@@ -84,23 +85,31 @@ bool checkLongInt(string str)
 
 int main()
 {
-    string str;
-    cin >> str;
-
-    if (checkInteger(str))
+    freopen("./Testcases/Q4_input.txt", "r", stdin);
+    int testcase;
+    cin >> testcase;
+    while (testcase--)
     {
-        cout << "Integer Variable" << endl;
-    }
-    else if (checkShortInt(str))
-    {
-        cout << "Short Integer Number" << endl;
-    }
-    else if (checkLongInt(str))
-    {
-        cout << "Long Integer Number" << endl;
-    }
-    else
-    {
-        cout << "Invalid Input or Undefined" << endl;
+        string str;
+        cin >> str;
+        cout << "Scanned : " << str << endl;
+        if (checkInteger(str))
+        {
+            cout << "Integer Variable" << endl;
+        }
+        else if (checkShortInt(str))
+        {
+            cout << "Short Integer Number" << endl;
+        }
+        else if (checkLongInt(str))
+        {
+            cout << "Long Integer Number" << endl;
+        }
+        else
+        {
+            cout << "Invalid Input or Undefined" << endl;
+        }
+        cout << "\n"
+             << endl;
     }
 }

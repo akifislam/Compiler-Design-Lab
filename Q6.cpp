@@ -1,3 +1,5 @@
+// 6.  Build a lexical analyzer for Character, Binary Variable, Binary Number
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -77,7 +79,7 @@ bool isBinaryNumber(string str)
 
     for (int i = 2; i < str.size(); i++)
     {
-        if (str[i] != '1' && str[i] == '0')
+        if (str[i] != '1' && str[i] != '0')
         {
             isOK = false;
             break;
@@ -91,22 +93,31 @@ bool isBinaryNumber(string str)
 
 int main()
 {
-    string str;
-    cin >> str;
-    if (isCharacterVariable(str))
+    freopen("./Testcases/Q6_input.txt", "r", stdin);
+
+    int testcase;
+    cin >> testcase;
+    while (testcase--)
     {
-        cout << "Character Variable" << endl;
-    }
-    else if (isBinaryVariable(str))
-    {
-        cout << "Binary Variable" << endl;
-    }
-    else if (isBinaryNumber(str))
-    {
-        cout << "Binary Number" << endl;
-    }
-    else
-    {
-        cout << "Invalid" << endl;
+        string str;
+        cin >> str;
+        cout << "Scanned :" << str << endl;
+        if (isCharacterVariable(str))
+        {
+            cout << "Character Variable" << endl;
+        }
+        else if (isBinaryVariable(str))
+        {
+            cout << "Binary Variable" << endl;
+        }
+        else if (isBinaryNumber(str))
+        {
+            cout << "Binary Number" << endl;
+        }
+        else
+        {
+            cout << "Invalid" << endl;
+        }
+        cout << "\n\n";
     }
 }

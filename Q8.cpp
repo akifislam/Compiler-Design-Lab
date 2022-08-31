@@ -1,5 +1,6 @@
-// 7. Write a program to recognize C++
-// 1. Keyword 2. Identifier 3. Operator 4. Constant
+// Have some bugs (input: 'int', output : identifier [Correct Output : keyword] )
+// 8. Write a program which converts a word of C++ program to its equivalent token
+
 #include <bits/stdc++.h>
 using namespace std;
 int pointCount = 0;
@@ -26,9 +27,8 @@ vector<string> relational_operators = {"==", "!=", ">", "<", ">=", "<="};
 vector<string> logical_operators = {"&&", "||", "!"};
 vector<string> bitwise_operators = {"&", "!", "^", "~", "<<", ">>"};
 
-void fire_up()
+void sort_keywords_operators()
 {
-    sort(keywords.begin(), keywords.end());
     sort(arithmatic_operators.begin(), arithmatic_operators.end());
     sort(inc_dec_operators.begin(), inc_dec_operators.end());
     sort(assignment_operators.begin(), assignment_operators.end());
@@ -126,40 +126,63 @@ bool isIdentifier(string input)
         return false;
 }
 
+vector<string> seperateWords(string str)
+{
+    vector<string> words;
+    string word = "";
+
+    for (auto letter : str)
+    {
+        if (letter == ' ')
+        {
+            words.push_back(word);
+            word = "";
+        }
+        else
+
+            word += letter;
+    }
+    words.push_back(word);
+    return words;
+}
+
 int main()
 {
-    fire_up();
-    // Write a program to Check for a single quotation
-    // if (input[0] == '\'')
-    // {
-    //     if (input[input.size() - 1] == '\'')
-    //         return true;
-    //     else
-    //         return false;
-    // }
-    //  // Write a program to Check for a double quotation
-    // if (input[0] == '\"')
-    string input;
-    cin >> input;
-    if (isConstant(input) != "xInvalidx")
-    {
-        cout << isConstant(input) << endl;
-    }
-    else if (isKeyword(input))
-    {
-        cout << "Keyword" << endl;
-    }
-    else if (isOperator(input) != "xInvalidx")
-    {
-        cout << isOperator(input) << endl;
-    }
+    freopen("./Testcases/Q8_input.txt", "r", stdin);
 
-    else if (isIdentifier(input))
+    sort_keywords_operators();
+
+    string str;
+    getline(cin, str);
+
+    // Seperate Words from a Long String and Save them to 'lexemes' vector
+    vector<string> lexemes = seperateWords(str);
+
+    for (int i = 0; i < lexemes.size(); i++)
     {
-        cout << "Identifier" << endl;
-    }
-    else
-    {
-        cout << "Invalid Input" << endl;
+        string input = lexemes[i];
+        cout << "Scanned : " << input << endl;
+
+        if (isConstant(input) != "xInvalidx")
+        {
+            cout << isConstant(input) << endl;
+        }
+        else if (isKeyword(input))
+        {
+            cout << "Keyword" << endl;
+        }
+        else if (isOperator(input) != "xInvalidx")
+        {
+            cout << isOperator(input) << endl;
+        }
+
+        else if (isIdentifier(input))
+        {
+            cout << "Identifier" << endl;
+        }
+        else
+        {
+            cout << "Invalid Input" << endl;
+        }
     }
 }
