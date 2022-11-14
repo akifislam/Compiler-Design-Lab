@@ -29,6 +29,7 @@ vector<string> bitwise_operators = {"&", "!", "^", "~", "<<", ">>"};
 
 void sort_keywords_operators()
 {
+    sort(keywords.begin(), keywords.end());
     sort(arithmatic_operators.begin(), arithmatic_operators.end());
     sort(inc_dec_operators.begin(), inc_dec_operators.end());
     sort(assignment_operators.begin(), assignment_operators.end());
