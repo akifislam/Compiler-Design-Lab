@@ -58,7 +58,7 @@ void printAnswer()
 }
 int main()
 {
-    freopen("./Testcases/Q2_C_input.txt", "r", stdin);
+    freopen("../Testcases/Q2_C_input.txt", "r", stdin);
     string str;
     getline(cin, str);
     seperateWord(str);

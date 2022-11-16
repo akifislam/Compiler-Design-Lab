@@ -1,6 +1,4 @@
-// 1. b) Seperate Letters, Digits are Other Characters
-// I have seperated unique characters. Case are not sensitive ('M' and 'm' are same)
-// Whitespaces are not considered as other characters
+// 1. a) Count number of words, letters, digits and other characters.
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -40,9 +38,10 @@ void print(set<char> str, string headline)
 
 int main()
 {
-    freopen("Testcases/Q1_B_input.txt", "r", stdin);
+    freopen("../Testcases/Q1_A_input.txt", "r", stdin);
     string str; // A Quick Brown Fox Jumps Over The Lazy Dog, Fox No. 282, Baker Street, England
     getline(cin, str);
+    cout << str << endl;
     differentiator(str);
     print(letters, "The letters are : ");
     print(digits, "The digits are : ");

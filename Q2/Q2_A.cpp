@@ -30,7 +30,7 @@ void countVowelConsonant(string str)
 
 int main()
 {
-    freopen("./Testcases/Q2_A_input.txt", "r", stdin);
+    freopen("../Testcases/Q2_A_input.txt", "r", stdin);
     string str;
     getline(cin, str);
     countVowelConsonant(str);

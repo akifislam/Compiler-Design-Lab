@@ -3,7 +3,7 @@
 .cph
 /.vscode
 .vscode
-*/DS_Store
+*/.DS_Store
 *.bin
-
+/Outsource
 
