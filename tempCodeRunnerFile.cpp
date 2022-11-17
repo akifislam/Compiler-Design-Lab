@@ -1,1 +1,1 @@
- ifstream infile("input.txt");
+cout << stk << "\t\t";

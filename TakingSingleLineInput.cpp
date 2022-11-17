@@ -35,6 +35,6 @@ int main()
     while (getline(infile, sentence))
     {
         cout << sentence << endl;
-        ;
+        cout << "Read OK" << endl;
     }
 }
