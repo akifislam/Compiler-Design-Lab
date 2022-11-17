@@ -14,6 +14,7 @@ void genDeg()
 string input, space, extra = "";
 stack<string> parse_tree;
 int n;
+
 void makeSpace()
 {
     space.clear();
@@ -22,6 +23,7 @@ void makeSpace()
         space += " ";
     }
 }
+
 bool getReduced()
 {
     int len = input.size();

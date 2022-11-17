@@ -1,1 +1,1 @@
-cout << stk << "\t\t";
+i = 1; syntax[i]; i+

@@ -1,43 +1,91 @@
+// Check the validity of the grammar
+
 #include <bits/stdc++.h>
 
 using namespace std;
 
-vector<string> A = {"+", "-", "*", "/"};
+string syntax;
 
-vector<string> seperateWords(string str)
+void replace()
 {
-
-    sort(A.begin(), A.end());
-    vector<string> words;
-
-    string cur_word = "";
-
-    for (auto letter : str)
+    string newSyntax = "";
+    for (int i = 0; syntax[i]; i++)
     {
-        if (binary_search(A.begin(), A.end(), letter))
+        if (syntax[i] == '(' or syntax[i] == ')' or syntax[i] == '+' or syntax[i] == '-' or syntax[i] == '*' or syntax[i] == '/')
         {
-            words.push_back(word);
-            cur_word = "";
+            newSyntax.push_back(syntax[i]);
         }
         else
-            cur_word += letter;
+        {
+            if (i and newSyntax[newSyntax.size() - 1] != 'E')
+                newSyntax.push_back('E');
+        }
     }
-    words.push_back(cur_word);
+    syntax = newSyntax;
+}
 
-    // Seperated Words
-    for (int i = 0; i < words.size(); i++)
+bool operatorCheck()
+{
+    int n = syntax.size() - 1;
+    if (syntax[0] == '+' or syntax[0] == '-' or syntax[0] == '*' or syntax[0] == '/')
     {
-        cout << words[i] << "\t";
+        return false;
     }
-    cout << "\n\n";
-    return words;
+    if (syntax[n] == '+' or syntax[n] == '-' or syntax[n] == '*' or syntax[n] == '/')
+    {
+        return false;
+    }
+    for (int i = 1; syntax[i]; i++)
+    {
+        if (syntax[i] == '+' or syntax[i] == '-' or syntax[i] == '*' or syntax[i] == '/')
+        {
+            if (syntax[i - 1] == '+' or syntax[i - 1] == '-' or syntax[i - 1] == '*' or syntax[i - 1] == '/')
+            {
+                return false;
+            }
+            if (syntax[i - 1] == '(')
+            {
+                return false;
+            }
+        }
+        if (syntax[i - 1] == '+' or syntax[i - 1] == '-' or syntax[i - 1] == '*' or syntax[i - 1] == '/')
+        {
+            if (syntax[i] == ')')
+            {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+bool bracketCheck()
+{
+    stack<char> brackets;
+    for (int i = 0; syntax[i]; i++)
+    {
+        if (syntax[i] == '(')
+            brackets.push('(');
+        else if (syntax[i] == ')')
+        {
+            if (brackets.size())
+                brackets.pop();
+            else
+                return false;
+        }
+    }
+    if (brackets.size() == 0)
+        return true;
+    else
+        return false;
 }
 
 int main()
 {
-    freopen("./Testcases/Q12_input.txt", "r", stdin);
-    string input_sentence;
-    getline(cin, input_sentence);
-    cout << "Input : " << input_sentence << endl;
-    seperateWords(input_sentence);
+    cin >> syntax; // 2+3*5
+    // cout << isalpha('U');
+    if (operatorCheck() and bracketCheck())
+        cout << "Valid\n";
+    else
+        cout << "Invalid\n";
 }
